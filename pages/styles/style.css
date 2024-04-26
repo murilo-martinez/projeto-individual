@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root{
+    --cor-vermelha: #780000;
+    --cor-vermelha-sec: #c1121f;
+    --cor-branca: #fdf0d5;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+}
+
+/* NAVBAR */
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 80px;
+}
+
+.imagem-nav{
+    width: 35%;
+    height: 35%;
+}
+
+.lista-nav{
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+
+    margin-right: 3rem;
+}
+
+.item-nav{
+    color: #fff;
+    text-decoration: none;
+}
+
+.item-nav:hover{
+    text-decoration: underline;
+    color: var(--cor-vermelha-sec);
+    font-weight: bold;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.background{
+    background-image: url("../../img/backgroundcampo.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 100vh;
+}
+
+.principal{
+    height: 20px;
+    text-align: center;
+    color: #fff;
+
+    position: relative;
+    top: 50%;
+}
+
+.titulo-principal{
+    font-size: 70px;
+    color: #000;
+}
+
+.titulo-principal::first-letter{
+    color: var(--cor-vermelha-sec);
+}
+
+.titulo-principal > span{
+    color: var(--cor-vermelha);
+}
+
+.principal > p{
+    font-size: 20px;
+}
+
+/* SEÇÃO DE NOTÍCIAS DO TIME */
+
+.noticias{
+    text-align: center;
+    height: 100px;
+
+    background-image: url("../../img/backgroundSaoPaulo2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.noticias h1{
+    padding: 1rem;
+    color: #fff;
+    font-size: 3rem;
+}
+
+.cards{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3rem;
+}
+
+.cards a{
+    text-decoration: none;
+
+    width: 30%;
+}
+
+.card{
+    border: .4px solid #000;
+    border-radius: 10px;
+    box-shadow: 0px 0px 16px 3px rgba(0,0,0,0.75);
+
+    height: 450px;
+
+    margin: 1rem;
+
+    background-image: url("../../img/zubeldia.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    text-align: left;
+
+    transition: .3s ease-in-out;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+
+/* .card img{
+    width: 100%;
+    height: 200px;
+
+    border-radius: 9px 9px 0px 0px;
+
+    margin-bottom: 0.5rem;
+} */
+
+.card p{
+    padding: 1rem;
+    color: #fff;
+}
+
+.card h2{
+    margin-bottom: .6rem;
+    font-size: 2rem;
+    padding: 1rem;
+    color: #fff;
+}
+
+/* SEÇÃO PARA A HISTÓRIA DO CLUBE */
+
+.historia{
+    background-color: #000;
+}
