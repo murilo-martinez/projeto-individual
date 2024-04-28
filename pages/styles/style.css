@@ -386,3 +386,48 @@ body{
 	background-color: var(--cor-vermelha);
 	color: #fff;
 }
+
+/* FOOTER */
+
+.container-footer{
+	background-color: var(--cor-branca);
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.container-footer img{
+    width: 25%;
+    height: 25%;
+}
+
+.links{
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.contatos{
+	display: flex;
+	flex-direction: column;
+	gap: 2.4rem;
+}
+
+.lista-link{
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.item-link{
+	text-decoration: none;
+	list-style: none;
+
+	color: var(--cor-vermelha);
+}
+
+.item-link:hover{
+	text-decoration: underline;
+	font-weight: bold;
+}

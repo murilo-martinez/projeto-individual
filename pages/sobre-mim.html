@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="shortcut icon"
+			href="../img/1-removebg-preview.png"
+			type="image/x-icon"
+		/>
+		<link rel="stylesheet" href="styles/sobre-mim.css" />
+		<title>MZFC | Sobre Mim</title>
+	</head>
+	<body>
+		<header>
+			<nav class="nav">
+				<a href="index.html"
+					><img
+						src="../img/2-removebg-preview.png"
+						alt="Logo"
+						class="imagem-nav"
+				/></a>
+
+				<div>
+					<ul class="lista-nav">
+						<li>
+							<a href="index.html" class="item-nav"
+								>Home</a
+							>
+						</li>
+						<li>
+							<a href="sobre-mim.html" class="item-nav" id="home-link"
+								>Sobre Mim</a
+							>
+						</li>
+						<li>
+							<a href="quiz.html" class="item-nav">Quiz</a>
+						</li>
+						<li>||</li>
+						<li>
+							<a href="login.html" class="item-nav">Login</a>
+						</li>
+						<li>
+							<a href="cadastro.html" class="item-nav"
+								>Cadastro</a
+							>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			<section class="sobre-mim">
+				<img src="../img/backgroundSaoPaulo.jpg" alt="São Paulo">
+				<div class="container">
+					<h1>Sobre Mim</h1>
+					<p>Olá! Meu nome é <span>Murilo</span>, e esta é um pouco da minha história com o <span>São Paulo Futebol Clube</span> e o futebol.</p>
+					<div class="historia">
+						<h2>Minha Paixão pelo <span>São Paulo</span></h2>
+						<p>A paixão pelo <span>São Paulo</span> vem de família. Meu pai e meu tio foram os responsáveis por me introduzir ao mundo do futebol, e desde então, acompanhar o Tricolor Paulista se tornou uma tradição em nossa casa. As histórias, os jogos emocionantes e a energia da torcida sempre me cativaram, e é por isso que tenho um amor incondicional pelo <span>São Paulo</span>.</p>
+					</div>
+					<div class="historia">
+						<h2>Amor Pelo Futebol</h2>
+						<p>O futebol não é apenas um esporte para mim, é uma paixão que transcende as barreiras do campo. Desde criança, fui fascinado pela habilidade dos jogadores, a estratégia por trás de cada jogo e a emoção que cada partida traz consigo. O futebol é mais do que um esporte, é uma parte fundamental da minha vida.</p>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+
+	<footer>
+		<div class="container-footer">
+			<img src="../img/2-removebg-preview.png" alt="Logo">
+
+			<div class="links">
+				<h2>Links</h2>
+				<ul class="lista-link">
+					<a href="index.html" class="item-link"><li>Home</li></a>
+					<a href="sobre-mim.html" class="item-link"><li>Sobre Mim</li></a>
+					<a href="quiz.html" class="item-link"><li>Quiz</li></a>
+				</ul>
+			</div>
+
+			<div class="contatos">
+				<h2>Contato</h2>
+				<ul class="lista-link">
+					<a href="#" class="item-link"><li>E-mail: murilo.martinez@sptech.school</li></a>
+					<a href="#" class="item-link"><li>Endereço: Rua Haddock Lobo, 595</li></a>
+					<a href="#" class="item-link"><li>Telefone: (11) 97383-3005</li></a>
+				</ul>
+			</div>
+		</div>
+	</footer>
+</html>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var homeLink = document.getElementById("home-link");
+
+		homeLink.addEventListener("click", function (event) {
+			event.preventDefault();
+
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
+		});
+	});
+</script>

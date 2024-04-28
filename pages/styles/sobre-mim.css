@@ -20,14 +20,16 @@ body{
 
 /* NAVBAR */
 
-.nav{
+.nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    background-color: var(--cor-vermelha);
     height: 80px;
 
-	background-color: var(--cor-vermelha);
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .imagem-nav{
@@ -56,52 +58,53 @@ body{
 
 /* CONTEÚDO PRINCIPAL */
 
-main{
-	text-align: center;
-	
+.sobre-mim{
 	display: flex;
-	flex-direction: column;
-}
-
-.div-titulo{
-	text-align: left;
-	
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-
-	margin: 5rem 10rem 0 10rem;
-}
-
-.div-titulo h1{
-	font-size: 4rem;
-}
-
-.div-titulo h3{
-	font-weight: 400;
-	font-size: 20px;
-}
-
-.div-texto{
-	display: flex;
-	flex-direction: column;
-
+	justify-content: space-around;
+	align-items: center;
 	gap: 4rem;
 
-	margin: 4rem 20rem 0 20rem;
+    margin: 50px 50px;
+	margin-top: 10rem;
 
-	text-align: left;
+	padding: 1rem;
 
-	font-size: 20px;
+	border: 2px solid #000;
 }
 
-.div-texto span{
+.sobre-mim img{
+	width: 50%;
+	height: 500px;
+	padding: 0;
+}
+
+.sobre-mim h1 {
+    font-size: 36px;
+    margin-bottom: 20px
+}
+
+.sobre-mim p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.historia {
+    margin-bottom: 40px;
+}
+
+.historia h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.historia p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.sobre-mim span{
 	color: var(--cor-vermelha-sec);
-	font-weight: bold;
-}
-
-.div-texto img{
-	margin-bottom: 3rem;
 }
 
 /* FOOTER */
@@ -128,7 +131,7 @@ main{
 .contatos{
 	display: flex;
 	flex-direction: column;
-	gap: 2.4rem;
+	gap: 2rem;
 }
 
 .lista-link{
