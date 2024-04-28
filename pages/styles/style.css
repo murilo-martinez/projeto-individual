@@ -68,11 +68,11 @@ body{
     color: #fff;
 
     position: relative;
-    top: 50%;
+    top: 40%;
 }
 
 .titulo-principal{
-    font-size: 70px;
+    font-size: 90px;
     color: #000;
 }
 
@@ -85,7 +85,9 @@ body{
 }
 
 .principal > p{
-    font-size: 20px;
+    font-size: 30px;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 /* SEÇÃO DE NOTÍCIAS DO TIME */
@@ -108,13 +110,12 @@ body{
 .cards{
     display: flex;
     justify-content: space-around;
+	flex-wrap: wrap;
     padding-top: 3rem;
 }
 
 .cards a{
     text-decoration: none;
-
-    width: 30%;
 }
 
 .card{
@@ -156,6 +157,9 @@ body{
 .card p{
     padding: 1rem;
     color: #fff;
+
+	font-size: 1rem;
+	font-weight: bold;
 }
 
 .card h2{
@@ -163,6 +167,23 @@ body{
     font-size: 2rem;
     padding: 1rem;
     color: #fff;
+}
+
+.card-principal{
+	width: 1000px;
+}
+
+.noticia-div1{
+	display: flex;
+	flex-shrink: 1;
+}
+
+.card1{
+	background-image: url('../../img/beraldo-psg.avif');
+}
+
+.card2{
+	background-image: url('../../img/moreira-sp.avif');
 }
 
 /* SEÇÃO PARA A HISTÓRIA DO CLUBE */
