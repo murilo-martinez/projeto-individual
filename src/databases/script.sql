@@ -7,3 +7,10 @@ create table contato(
 	email varchar(45) not null,
 	mensagem varchar(150) not null
 );
+
+create table usuario(
+	id int primary key auto_increment,
+	nome varchar(45) not null,
+	email varchar(45) not null,
+	senha varchar(45) not null
+)
