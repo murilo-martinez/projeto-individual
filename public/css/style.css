@@ -72,7 +72,7 @@ body{
 /* CONTEÚDO PRINCIPAL */
 
 .background{
-    background-image: url("../../img/backgroundcampo.webp");
+    background-image: url("../assets/imgs/backgroundcampo.webp");
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -112,7 +112,7 @@ body{
 .noticias{
     text-align: center;
 
-    background-image: url("../../img/backgroundSaoPaulo2.png");
+    background-image: url("../assets/imgs/backgroundSaoPaulo2.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -143,7 +143,7 @@ body{
 
     margin: 1rem;
 
-    background-image: url("../../img/zubeldia.webp");
+    background-image: url("../assets/imgs/zubeldia.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -195,17 +195,17 @@ body{
 }
 
 .card1{
-	background-image: url('../../img/beraldo-psg.avif');
+	background-image: url('../assets/imgs/beraldo-psg.avif');
 }
 
 .card2{
-	background-image: url('../../img/moreira-sp.avif');
+	background-image: url('../assets/imgs/moreira-sp.avif');
 }
 
 /* SEÇÃO PARA A ESCALAÇÃO DO CLUBE */
 
 .escalacao{
-    background-image: url("../../img/backgroundSaoPaulo2.png");
+    background-image: url("../assets/imgs/backgroundSaoPaulo2.png");
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -252,7 +252,7 @@ body{
 
     margin: 1rem;
 
-    background-image: url("../../img/zubeldia.webp");
+    background-image: url("../assets/imgs/zubeldia.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -287,23 +287,23 @@ body{
 }
 
 .card1-jogador{
-	background-image: url("../../img/james.webp");
+	background-image: url("../assets/imgs/james.webp");
 }
 
 .card2-jogador{
-	background-image: url("../../img/calleri.jpeg");
+	background-image: url("../assets/imgs/calleri.jpeg");
 }
 
 .card3-jogador{
-	background-image: url("../../img/lucas-moura2.webp");
+	background-image: url("../assets/imgs/lucas-moura2.webp");
 }
 
 .card4-jogador{
-	background-image: url("../../img/rafael-goleiro.webp");
+	background-image: url("../assets/imgs/rafael-goleiro.webp");
 }
 
 .card5-jogador{
-	background-image: url("../../img/luciano2.jpeg");
+	background-image: url("../assets/imgs/luciano2.jpeg");
 }
 
 .jogadores span{
