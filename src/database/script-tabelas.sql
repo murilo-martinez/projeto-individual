@@ -23,6 +23,8 @@ CREATE TABLE usuario (
 	senha VARCHAR(50)
 );
 
+select * from usuario;
+
 CREATE TABLE aviso (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	titulo VARCHAR(100),
