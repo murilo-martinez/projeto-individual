@@ -504,3 +504,8 @@ canvas {
 	background-color: var(--cor-vermelha-sec);
 	color: var(--cor-branca);
 }
+
+#tabelaClassificacao tbody tr .player-highlighted {
+    font-weight: bold;
+    color: #5c6bc0;
+}

@@ -18,7 +18,7 @@
 </head>
 
 <body
-	onload="validarSessao(); exibirJogadores(); exibirMediaAcertos(); atualizarTabelaClassificacao(); adicionarJogadorTabela(); exibirGraficoMediaAcertos(); exibirMediaAcertosErros();">
+	onload="validarSessao(); exibirJogadores(); exibirMediaAcertos(); atualizarTabelaClassificacao();">
 	<div class="janela">
 		<div class="header-left dash-header">
 			<h1>MZFC</h1>
@@ -72,15 +72,14 @@
 		</div>
 	</div>
 	<script>
-		b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
+		b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 		function exibirJogadores() {
 			fetch('/medidas/jogadores')
 				.then(response => response.json())
 				.then(data => {
-					const numJogadores = data.length; // Obtém o número de jogadores
 					const listaJogadores = document.getElementById("listaJogadores");
-					listaJogadores.innerText = `${numJogadores}`; // Exibe o número de jogadores
+					listaJogadores.innerText = `${data.length}`; // Exibe o número de jogadores
 				})
 				.catch(error => console.error('Erro ao buscar jogadores:', error));
 		}
@@ -100,7 +99,6 @@
 			fetch('/medidas/classificacao')
 				.then(response => response.json())
 				.then(data => {
-					console.log('Dados da classificação:', data);
 					const corpoTabela = document.getElementById("corpoTabela");
 					const jogadoresExistentes = new Map(); // Mapa para armazenar jogadores existentes e suas pontuações
 					// Verifica os jogadores existentes na tabela
@@ -111,7 +109,7 @@
 					});
 					// Atualiza ou adiciona os jogadores na tabela
 					data.forEach((item, index) => {
-						const nomeJogador = item.nickname;
+						const nomeJogador = item.nome;
 						const pontuacaoJogador = item.acertos;
 						if (jogadoresExistentes.has(nomeJogador)) {
 							const pontuacaoExistente = jogadoresExistentes.get(nomeJogador);
@@ -137,6 +135,10 @@
 			colunaPosicao.textContent = `${posicao}º`;
 			const colunaJogador = document.createElement("td");
 			colunaJogador.textContent = nomeJogador;
+			if (nomeJogador === sessionStorage.NOME_USUARIO) {
+				colunaJogador.classList.add("player-highlighted"); // Destaca o nome do jogador logado
+
+			}
 			const colunaPontuacao = document.createElement("td");
 			colunaPontuacao.textContent = pontuacaoJogador;
 			linha.appendChild(colunaPosicao);

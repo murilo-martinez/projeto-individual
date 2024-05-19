@@ -1,7 +1,7 @@
 const database = require('../database/config');
 
 function listarJogadores() {
-	const instrucaoSql = 'SELECT nickname FROM usuario';
+	const instrucaoSql = 'SELECT nome FROM usuario';
 	return database.executar(instrucaoSql);
 }
 
@@ -12,7 +12,7 @@ function calcularMediaAcertos() {
 
 function obterClassificacao() {
 	const instrucaoSql = `
-        SELECT usuario.nickname, quiz_resultados.acertos
+        SELECT usuario.nome, quiz_resultados.acertos
         FROM quiz_resultados
         JOIN usuario ON quiz_resultados.fk_usuario = usuario.id
         ORDER BY quiz_resultados.acertos DESC
