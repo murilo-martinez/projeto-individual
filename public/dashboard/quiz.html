@@ -150,7 +150,9 @@
 					<div id="indicadores">
 						<p>Média de acertos: <span id="media"></span></p>
 						<p>Você está <span id="acimaOuAbaixo"></span> da média.</p>
+						<p>Desempenho: <span id="desempenho"></span></p>
 					</div>
+					<button onclick="voltar()">Voltar</button>
 				</div>
 			</div>
 
@@ -180,15 +182,12 @@
 				respostasIncorretas++;
 			}
 
-			// Oculta a pergunta atual
 			document.getElementById("pergunta" + perguntaAtual).style.display = "none";
 
-			// Verifica se ainda há perguntas para exibir
 			if (perguntaAtual < totalDePergutas) {
-				perguntaAtual++; // Move para a próxima pergunta
-				document.getElementById("pergunta" + perguntaAtual).style.display = "block"; // Exibe a próxima pergunta
+				perguntaAtual++;
+				document.getElementById("pergunta" + perguntaAtual).style.display = "block";
 			} else {
-				// Todas as perguntas foram respondidas
 				exibirResultados();
 			}
 		}
@@ -200,26 +199,30 @@
 		function exibirResultados() {
 			const fk_usuario = obterIdUsuario();
 
-			// Esconde o conteúdo do quiz
 			document.getElementById("quiz").style.display = "none";
-
-			// Exibe o contêiner dos resultados
 			document.getElementById("resultados").style.display = "block";
 
-			// Calcula a média de acertos
 			const totalRespostas = respostasCorretas + respostasIncorretas;
 			const media = (respostasCorretas / totalRespostas) * 100;
 			document.getElementById("media").textContent = media.toFixed(2) + "%";
 
-			// Determina se o usuário está acima ou abaixo da média
-			const mediaGeral = 70; // Defina a média geral aqui
+			const mediaGeral = 70;
 			if (media >= mediaGeral) {
 				document.getElementById("acimaOuAbaixo").textContent = "acima";
 			} else {
 				document.getElementById("acimaOuAbaixo").textContent = "abaixo";
 			}
 
-			// Enviar os resultados ao servidor
+			let desempenho = '';
+			if (media >= 80) {
+				desempenho = 'Bom';
+			} else if (media >= 50) {
+				desempenho = 'Médio';
+			} else {
+				desempenho = 'Ruim';
+			}
+			document.getElementById("desempenho").textContent = desempenho;
+
 			fetch('/medidas/salvar-resultados', {
 				method: 'POST',
 				headers: {
@@ -244,7 +247,6 @@
 					console.error('Erro ao salvar resultados:', error);
 				});
 
-			// Cria o gráfico com os resultados
 			const ctx = document.getElementById('graficoResultados').getContext('2d');
 			const quizChart = new Chart(ctx, {
 				type: 'pie',
@@ -272,6 +274,10 @@
 					}
 				}
 			});
+		}
+
+		function voltar() {
+			window.location.href = './mainPage.html';
 		}
 	</script>
 </body>

@@ -64,7 +64,7 @@ body {
 	font-size: 18px;
 	padding: 10px 15px;
 	color: white;
-	background-color: #e6005a;
+	background-color: var(--cor-vermelha);
 	width: 120px;
 }
 
@@ -118,7 +118,7 @@ body {
 /* pagina graficos */
 
 .dash-header {
-	background-color: #212124;
+	background-color: var(--cor-vermelha-sec);
 }
 
 .dash {
@@ -566,8 +566,4 @@ canvas {
 #resultados{
 	width: 50%;
 	height: 60%;
-}
-
-.pergunta{
-	
 }
