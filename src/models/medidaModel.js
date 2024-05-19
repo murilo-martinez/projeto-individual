@@ -1,35 +1,27 @@
-var database = require("../database/config");
+const database = require('../database/config');
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
-
-    var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    FROM medida
-                    WHERE fk_aquario = ${idAquario}
-                    ORDER BY id DESC LIMIT ${limite_linhas}`;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+function listarJogadores() {
+	const instrucaoSql = 'SELECT nickname FROM usuario';
+	return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idAquario) {
+function calcularMediaAcertos() {
+	const instrucaoSql = 'SELECT AVG(acertos) AS media_acertos FROM quiz_resultados';
+	return database.executar(instrucaoSql);
+}
 
-    var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        FROM medida WHERE fk_aquario = ${idAquario} 
-                    ORDER BY id DESC LIMIT 1`;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+function obterClassificacao() {
+	const instrucaoSql = `
+        SELECT usuario.nickname, quiz_resultados.acertos
+        FROM quiz_resultados
+        JOIN usuario ON quiz_resultados.fk_usuario = usuario.id
+        ORDER BY quiz_resultados.acertos DESC
+    `;
+	return database.executar(instrucaoSql);
 }
 
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-}
+	listarJogadores,
+	calcularMediaAcertos,
+	obterClassificacao
+};

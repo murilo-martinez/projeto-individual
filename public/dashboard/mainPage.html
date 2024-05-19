@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MZFC | Geral</title>
+	<link rel="stylesheet" href="./../css/dashboards.css">
+	<link rel="stylesheet" href="./../css/estilo.css" />
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="../js/sessao.js"></script>
+	<script src="../js/alerta.js"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+</head>
+
+<body
+	onload="validarSessao(); exibirJogadores(); exibirMediaAcertos(); atualizarTabelaClassificacao(); adicionarJogadorTabela(); exibirGraficoMediaAcertos(); exibirMediaAcertosErros();">
+	<div class="janela">
+		<div class="header-left dash-header">
+			<h1>MZFC</h1>
+			<div class="hello">
+				<h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+			</div>
+			<div class="btn-nav">
+				<h3>Geral</h3>
+			</div>
+			<div class="btn-nav-white">
+				<a href="./dashboard.html">
+					<h3>Quiz</h3>
+				</a>
+			</div>
+			<div class="btn-nav-white">
+				<a href="./mural.html">
+					<h3>Post</h3>
+				</a>
+			</div>
+			<div class="btn-logout" onclick="limparSessao()">
+				<h3>Sair</h3>
+			</div>
+		</div>
+		<div class="dash">
+			<div class="jogadores-media">
+				<div id="jogadores" class="info-box">
+					<h3>Jogadores Ativos:</h3>
+					<div id="listaJogadores"></div>
+				</div>
+				<div id="mediaAcertos" class="info-box">
+					<h3>Média de Acertos:</h3>
+					<p id="mediaValor"></p>
+				</div>
+			</div>
+			<div id="classificacao" class="info-box">
+				<h3>Classificação</h3>
+				<table id="tabelaClassificacao">
+					<thead>
+						<tr>
+							<th>Posição</th>
+							<th>Jogador</th>
+							<th>Pontos</th>
+						</tr>
+					</thead>
+					<tbody id="corpoTabela"></tbody>
+				</table>
+			</div>
+			<div class="grafico-media">
+				<canvas id="graficoMediaAcertosErros"></canvas>
+			</div>
+		</div>
+	</div>
+	<script>
+		b_usuario.innerHTML = sessionStorage.NICKNAME_USUARIO;
+
+		function exibirJogadores() {
+			fetch('/medidas/jogadores')
+				.then(response => response.json())
+				.then(data => {
+					const numJogadores = data.length; // Obtém o número de jogadores
+					const listaJogadores = document.getElementById("listaJogadores");
+					listaJogadores.innerText = `${numJogadores}`; // Exibe o número de jogadores
+				})
+				.catch(error => console.error('Erro ao buscar jogadores:', error));
+		}
+
+		function exibirMediaAcertos() {
+			fetch('/medidas/media-acertos')
+				.then(response => response.json())
+				.then(data => {
+					const mediaValor = document.getElementById("mediaValor");
+					mediaValor.innerText = `${Number(data[0].media_acertos).toFixed(0)}`;
+				})
+				.catch(error => console.error('Erro ao buscar média de acertos:', error));
+		}
+
+
+		function atualizarTabelaClassificacao() {
+			fetch('/medidas/classificacao')
+				.then(response => response.json())
+				.then(data => {
+					console.log('Dados da classificação:', data);
+					const corpoTabela = document.getElementById("corpoTabela");
+					const jogadoresExistentes = new Map(); // Mapa para armazenar jogadores existentes e suas pontuações
+					// Verifica os jogadores existentes na tabela
+					corpoTabela.querySelectorAll("tr").forEach(row => {
+						const jogador = row.querySelector("td:nth-child(2)").textContent.trim();
+						const pontuacao = parseInt(row.querySelector("td:nth-child(3)").textContent.trim());
+						jogadoresExistentes.set(jogador, pontuacao);
+					});
+					// Atualiza ou adiciona os jogadores na tabela
+					data.forEach((item, index) => {
+						const nomeJogador = item.nickname;
+						const pontuacaoJogador = item.acertos;
+						if (jogadoresExistentes.has(nomeJogador)) {
+							const pontuacaoExistente = jogadoresExistentes.get(nomeJogador);
+							if (pontuacaoJogador > pontuacaoExistente) {
+								// Remove a entrada existente na tabela
+								const rowToRemove = corpoTabela.querySelector(`td:nth-child(2):contains('${nomeJogador}')`).parentNode;
+								rowToRemove.parentNode.removeChild(rowToRemove);
+								// Adiciona o jogador com a nova pontuação
+								adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, index + 1);
+							}
+						} else {
+							// Adiciona o jogador à tabela
+							adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, index + 1);
+						}
+					});
+				})
+				.catch(error => console.error('Erro ao buscar classificação:', error));
+		}
+
+		function adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, posicao) {
+			const linha = document.createElement("tr");
+			const colunaPosicao = document.createElement("td");
+			colunaPosicao.textContent = `${posicao}º`;
+			const colunaJogador = document.createElement("td");
+			colunaJogador.textContent = nomeJogador;
+			const colunaPontuacao = document.createElement("td");
+			colunaPontuacao.textContent = pontuacaoJogador;
+			linha.appendChild(colunaPosicao);
+			linha.appendChild(colunaJogador);
+			linha.appendChild(colunaPontuacao);
+			corpoTabela.appendChild(linha);
+		}
+	</script>
+</body>
+
+</html>

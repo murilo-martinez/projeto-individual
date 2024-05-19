@@ -9,7 +9,7 @@ function listar() {
             a.descricao,
             a.fk_usuario,
             u.id AS idUsuario,
-            u.nome,
+            u.nickname,
             u.email,
             u.senha
         FROM aviso a
