@@ -29,12 +29,12 @@
 				<h3>Geral</h3>
 			</div>
 			<div class="btn-nav-white">
-				<a href="./dashboard.html">
+				<a href="./quiz.html">
 					<h3>Quiz</h3>
 				</a>
 			</div>
 			<div class="btn-nav-white">
-				<a href="./mural.html">
+				<a href="./post.html">
 					<h3>Post</h3>
 				</a>
 			</div>
@@ -79,7 +79,7 @@
 				.then(response => response.json())
 				.then(data => {
 					const listaJogadores = document.getElementById("listaJogadores");
-					listaJogadores.innerText = `${data.length}`; // Exibe o número de jogadores
+					listaJogadores.innerText = `${data.length}`;
 				})
 				.catch(error => console.error('Erro ao buscar jogadores:', error));
 		}
@@ -100,28 +100,28 @@
 				.then(response => response.json())
 				.then(data => {
 					const corpoTabela = document.getElementById("corpoTabela");
-					const jogadoresExistentes = new Map(); // Mapa para armazenar jogadores existentes e suas pontuações
-					// Verifica os jogadores existentes na tabela
+					const jogadoresExistentes = new Map();
+
 					corpoTabela.querySelectorAll("tr").forEach(row => {
 						const jogador = row.querySelector("td:nth-child(2)").textContent.trim();
 						const pontuacao = parseInt(row.querySelector("td:nth-child(3)").textContent.trim());
 						jogadoresExistentes.set(jogador, pontuacao);
 					});
-					// Atualiza ou adiciona os jogadores na tabela
+
 					data.forEach((item, index) => {
 						const nomeJogador = item.nome;
 						const pontuacaoJogador = item.acertos;
 						if (jogadoresExistentes.has(nomeJogador)) {
 							const pontuacaoExistente = jogadoresExistentes.get(nomeJogador);
 							if (pontuacaoJogador > pontuacaoExistente) {
-								// Remove a entrada existente na tabela
+
 								const rowToRemove = corpoTabela.querySelector(`td:nth-child(2):contains('${nomeJogador}')`).parentNode;
 								rowToRemove.parentNode.removeChild(rowToRemove);
-								// Adiciona o jogador com a nova pontuação
+
 								adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, index + 1);
 							}
 						} else {
-							// Adiciona o jogador à tabela
+
 							adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, index + 1);
 						}
 					});
@@ -136,7 +136,7 @@
 			const colunaJogador = document.createElement("td");
 			colunaJogador.textContent = nomeJogador;
 			if (nomeJogador === sessionStorage.NOME_USUARIO) {
-				colunaJogador.classList.add("player-highlighted"); // Destaca o nome do jogador logado
+				colunaJogador.classList.add("player-highlighted");
 
 			}
 			const colunaPontuacao = document.createElement("td");

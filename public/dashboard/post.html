@@ -39,7 +39,7 @@
             </div>
 
             <div class="btn-nav-white">
-                <a href="./dashboard.html">
+                <a href="./quiz.html">
                     <h3>Quiz</h3>
                 </a>
             </div>
@@ -126,7 +126,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
+                window.location = "/dashboard/post.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -162,7 +162,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/post.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MZFC | Página Inicial</title>
+    <title>MZFC | Edição de Post</title>
 
     
     <link rel="stylesheet" href="./../css/dashboards.css">
@@ -34,20 +34,20 @@
             </div>
 
             <div class="btn-nav-white">
-                <a href="cards.html">
-                    <h3>Aquários</h3>
+                <a href="mainPage.html">
+                    <h3>Geral</h3>
                 </a>
             </div>
 
             <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
+                <a href="./quiz.html">
+                    <h3>Quiz</h3>
                 </a>
             </div>
 
             <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                <a href="./post.html">
+                    <h3>Post</h3>
                 </a>
             </div>
 
@@ -116,7 +116,7 @@
 
             if (resposta.ok) {
                 window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/post.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
