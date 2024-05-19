@@ -36,9 +36,22 @@ function mediaAcertosErros(req, res) {
 		});
 }
 
+function salvarResultados(req, res) {
+    const { acertos, erros, fk_usuario } = req.body;
+
+    medidaModel.salvarResultados(acertos, erros, fk_usuario)
+        .then(result => res.status(200).json(result))
+        .catch(erro => {
+            console.error('Erro ao salvar resultados:', erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
-	listarJogadores,
-	mediaAcertos,
-	classificacao,
-	mediaAcertosErros
+    listarJogadores,
+    mediaAcertos,
+    classificacao,
+    mediaAcertosErros,
+    salvarResultados
 };
+

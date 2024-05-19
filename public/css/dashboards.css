@@ -126,7 +126,7 @@ body {
 	position: relative;
 	top: 0;
 	left: 20%;
-	background-color: #161618;
+	background-color: white;
 	height: 100vh;
 	overflow: auto;
 }
@@ -508,4 +508,66 @@ canvas {
 #tabelaClassificacao tbody tr .player-highlighted {
     font-weight: bold;
     color: #5c6bc0;
+}
+
+#quizContainer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+#inicarQuiz h1{
+	color: var(--cor-vermelha);
+	font-size: 60px;
+}
+
+#inicarQuiz p{
+	font-size: 17px;
+	font-weight: bold;
+}
+
+#inicarQuiz button{
+	background-color: transparent;
+	padding: .5rem 1rem;
+	transition: .3s ease-in-out;
+	width: 100%;
+
+	box-shadow: 3px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+#inicarQuiz button:hover{
+	background-color: var(--cor-vermelha);
+	color: var(--cor-branca);
+
+	transform: rotateY(-5px);
+}
+
+.quizForm{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	gap: 5rem;
+}
+
+.quizForm span{
+	border: 2px solid black;
+	padding: 0.3rem 1rem;
+	width: 100%;
+	text-align: center;
+	transition: .3s ease-in-out;
+}
+
+.quizForm span:hover{
+	background-color: var(--cor-vermelha);
+	color: var(--cor-branca);
+}
+
+#resultados{
+	width: 50%;
+	height: 60%;
+}
+
+.pergunta{
+	
 }

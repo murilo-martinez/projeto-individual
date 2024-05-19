@@ -20,8 +20,17 @@ function obterClassificacao() {
 	return database.executar(instrucaoSql);
 }
 
+function salvarResultados(acertos, erros, fk_usuario) {
+    const instrucaoSql = `
+        INSERT INTO quiz_resultados (acertos, erros, fk_usuario)
+        VALUES (${acertos}, ${erros}, ${fk_usuario});
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-	listarJogadores,
-	calcularMediaAcertos,
-	obterClassificacao
+    listarJogadores,
+    calcularMediaAcertos,
+    obterClassificacao,
+    salvarResultados
 };
