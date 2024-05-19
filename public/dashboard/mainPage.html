@@ -17,8 +17,7 @@
 		rel="stylesheet">
 </head>
 
-<body
-	onload="validarSessao(); exibirJogadores(); exibirMediaAcertos(); atualizarTabelaClassificacao();">
+<body onload="validarSessao(); exibirJogadores(); exibirMediaAcertos(); atualizarTabelaClassificacao();">
 	<div class="janela">
 		<div class="header-left dash-header">
 			<h1>MZFC</h1>
@@ -111,19 +110,8 @@
 					data.forEach((item, index) => {
 						const nomeJogador = item.nome;
 						const pontuacaoJogador = item.acertos;
-						if (jogadoresExistentes.has(nomeJogador)) {
-							const pontuacaoExistente = jogadoresExistentes.get(nomeJogador);
-							if (pontuacaoJogador > pontuacaoExistente) {
-
-								const rowToRemove = corpoTabela.querySelector(`td:nth-child(2):contains('${nomeJogador}')`).parentNode;
-								rowToRemove.parentNode.removeChild(rowToRemove);
-
-								adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, index + 1);
-							}
-						} else {
-
-							adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, index + 1);
-						}
+						
+						adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, index + 1);
 					});
 				})
 				.catch(error => console.error('Erro ao buscar classificação:', error));
