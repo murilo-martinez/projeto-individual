@@ -99,12 +99,10 @@
 				.then(response => response.json())
 				.then(data => {
 					const corpoTabela = document.getElementById("corpoTabela");
-					const jogadoresExistentes = new Map();
 
 					corpoTabela.querySelectorAll("tr").forEach(row => {
 						const jogador = row.querySelector("td:nth-child(2)").textContent.trim();
 						const pontuacao = parseInt(row.querySelector("td:nth-child(3)").textContent.trim());
-						jogadoresExistentes.set(jogador, pontuacao);
 					});
 
 					data.forEach((item, index) => {
