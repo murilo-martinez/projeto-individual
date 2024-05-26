@@ -17,14 +17,15 @@
 		rel="stylesheet">
 </head>
 
-<body onload="validarSessao(); exibirJogadores(); exibirMediaAcertos(); atualizarTabelaClassificacao();">
+<body
+	onload="validarSessao(); exibirJogadores(); exibirMediaAcertos(); atualizarTabelaClassificacao(); exibirGraficoEvolucaoAcertos()">
 	<div class="janela">
 		<div class="header-left dash-header">
 			<h1>MZFC</h1>
 			<div class="hello">
 				<h3>Olá, <span id="b_usuario">usuário</span>!</h3>
 			</div>
-			<div class="btn-nav">
+			<div class="btn-nav-white">
 				<h3>Geral</h3>
 			</div>
 			<div class="btn-nav-white">
@@ -43,11 +44,11 @@
 		</div>
 		<div class="dash">
 			<div class="jogadores-media">
-				<div id="jogadores" class="info-box">
-					<h3>Jogadores Ativos:</h3>
+				<div id="jogadores" class="info-box box">
+					<h3>Usuários Ativos:</h3>
 					<div id="listaJogadores"></div>
 				</div>
-				<div id="mediaAcertos" class="info-box">
+				<div id="mediaAcertos" class="info-box box">
 					<h3>Média de Acertos:</h3>
 					<p id="mediaValor"></p>
 				</div>
@@ -65,8 +66,8 @@
 					<tbody id="corpoTabela"></tbody>
 				</table>
 			</div>
-			<div class="grafico-media">
-				<canvas id="graficoMediaAcertosErros"></canvas>
+			<div class="grafico-evolucao">
+				<canvas id="graficoEvolucaoAcertos"></canvas>
 			</div>
 		</div>
 	</div>
@@ -100,17 +101,21 @@
 				.then(data => {
 					const corpoTabela = document.getElementById("corpoTabela");
 
-					corpoTabela.querySelectorAll("tr").forEach(row => {
-						const jogador = row.querySelector("td:nth-child(2)").textContent.trim();
-						const pontuacao = parseInt(row.querySelector("td:nth-child(3)").textContent.trim());
-					});
+					const linhas = corpoTabela.querySelectorAll("tr");
+					for (let i = 0; i < linhas.length; i++) {
+						const linha = linhas[i];
+						const jogador = linha.querySelector("td:nth-child(2)").textContent.trim();
+						const pontuacao = parseInt(linha.querySelector("td:nth-child(3)").textContent.trim());
+						console.log(jogador, pontuacao);
+					}
 
-					data.forEach((item, index) => {
+					for (let i = 0; i < data.length; i++) {
+						const item = data[i];
 						const nomeJogador = item.nome;
 						const pontuacaoJogador = item.acertos;
-						
-						adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, index + 1);
-					});
+
+						adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, i + 1);
+					}
 				})
 				.catch(error => console.error('Erro ao buscar classificação:', error));
 		}
@@ -118,13 +123,27 @@
 		function adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, posicao) {
 			const linha = document.createElement("tr");
 			const colunaPosicao = document.createElement("td");
-			colunaPosicao.textContent = `${posicao}º`;
+
+			// Adicionar coroa baseada na posição
+			let coroa = '';
+			if (posicao === 1) {
+				coroa = ' 👑'; // Coroa de ouro
+				linha.style.backgroundColor = "#FFD700"; // Fundo dourado
+			} else if (posicao === 2) {
+				coroa = ' 👑'; // Coroa de prata
+				linha.style.backgroundColor = "#C0C0C0"; // Fundo prateado
+			} else if (posicao === 3) {
+				coroa = ' 👑'; // Coroa de bronze
+				linha.style.backgroundColor = "#CD7F32"; // Fundo bronzeado
+			}
+
+			colunaPosicao.innerHTML = `${posicao}º${coroa}`;
 			const colunaJogador = document.createElement("td");
 			colunaJogador.textContent = nomeJogador;
 			if (nomeJogador === sessionStorage.NOME_USUARIO) {
 				colunaJogador.classList.add("player-highlighted");
-
 			}
+
 			const colunaPontuacao = document.createElement("td");
 			colunaPontuacao.textContent = pontuacaoJogador;
 			linha.appendChild(colunaPosicao);
@@ -132,6 +151,45 @@
 			linha.appendChild(colunaPontuacao);
 			corpoTabela.appendChild(linha);
 		}
+
+		function exibirGraficoEvolucaoAcertos() {
+            const fk_usuario = sessionStorage.ID_USUARIO;
+
+            if (!fk_usuario) {
+                console.error("ID do usuário não encontrado na sessionStorage.");
+                return;
+            }
+
+            fetch(`/medidas/ultimos-acertos/${fk_usuario}`)
+                .then(response => response.json())
+                .then(data => {
+                    const labels = data.map(item => item.data);
+                    const acertos = data.map(item => item.acertos);
+
+                    const ctx = document.getElementById('graficoEvolucaoAcertos').getContext('2d');
+                    const graficoEvolucaoAcertos = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Últimos Acertos',
+                                data: acertos,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error('Erro ao buscar últimos acertos:', error));
+        }
 	</script>
 </body>
 

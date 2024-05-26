@@ -5,7 +5,7 @@
 /*
 comandos para mysql server
 */
-
+Drop database mzfc;
 CREATE DATABASE mzfc;
 
 USE mzfc;
@@ -23,6 +23,7 @@ CREATE TABLE quiz_resultados (
     id INT PRIMARY KEY AUTO_INCREMENT,
     acertos INT,
     erros INT,
+    dataQuiz datetime default current_timestamp,
     fk_usuario INT,
     FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );

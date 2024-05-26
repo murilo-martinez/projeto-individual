@@ -20,10 +20,20 @@ function obterClassificacao() {
 	return database.executar(instrucaoSql);
 }
 
-function salvarResultados(acertos, erros, fk_usuario) {
+function salvarResultados(acertos, erros, dataQuiz, fk_usuario) {
     const instrucaoSql = `
-        INSERT INTO quiz_resultados (acertos, erros, fk_usuario)
-        VALUES (${acertos}, ${erros}, ${fk_usuario});
+        INSERT INTO quiz_resultados (acertos, erros, dataQuiz, fk_usuario)
+        VALUES ('${acertos}', '${erros}', '${dataQuiz}', '${fk_usuario}');
+    `;
+    return database.executar(instrucaoSql, [acertos, erros, dataQuiz, fk_usuario]);
+}
+
+function obterUltimosAcertos(fk_usuario) {
+    const instrucaoSql = `
+        SELECT acertos, DATE_FORMAT(dataQuiz, '%d/%m/%Y') AS data
+        FROM quiz_resultados
+        WHERE fk_usuario = '${fk_usuario}'
+        ORDER BY dataQuiz DESC
     `;
     return database.executar(instrucaoSql);
 }
@@ -32,5 +42,6 @@ module.exports = {
     listarJogadores,
     calcularMediaAcertos,
     obterClassificacao,
-    salvarResultados
+    salvarResultados,
+    obterUltimosAcertos
 };

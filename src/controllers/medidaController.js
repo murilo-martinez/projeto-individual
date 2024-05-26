@@ -37,12 +37,23 @@ function mediaAcertosErros(req, res) {
 }
 
 function salvarResultados(req, res) {
-    const { acertos, erros, fk_usuario } = req.body;
+    const { acertos, erros, dataQuiz, fk_usuario } = req.body;
 
-    medidaModel.salvarResultados(acertos, erros, fk_usuario)
-        .then(result => res.status(200).json(result))
+    medidaModel.salvarResultados(acertos, erros, dataQuiz, fk_usuario)
+        .then(() => res.status(200).json({ message: 'Resultados salvos com sucesso' }))
         .catch(erro => {
             console.error('Erro ao salvar resultados:', erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function ultimosAcertos(req, res) {
+    const { fk_usuario } = req.params;
+
+    medidaModel.obterUltimosAcertos(fk_usuario)
+        .then(result => res.status(200).json(result))
+        .catch(erro => {
+            console.error('Erro ao obter evolução do usuário:', erro.sqlMessage);
             res.status(500).json(erro.sqlMessage);
         });
 }
@@ -52,6 +63,7 @@ module.exports = {
     mediaAcertos,
     classificacao,
     mediaAcertosErros,
-    salvarResultados
+    salvarResultados,
+    ultimosAcertos
 };
 

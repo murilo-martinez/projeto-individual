@@ -37,7 +37,7 @@
 					<h3>Geral</h3>
 				</a>
 			</div>
-			<div class="btn-nav">
+			<div class="btn-nav-white">
 				<h3>Quiz</h3>
 			</div>
 			<div class="btn-nav-white">
@@ -78,7 +78,8 @@
 						<h2>O que representa cada símbolo no escudo do time?</h2>
 						<button onclick="responder(this, false)">Um pinheiro</button>
 						<button
-							onclick="responder(this, 'O escudo do São Paulo FC representa o estado de São Paulo, com o Triângulo e o Monumento às Bandeiras')">O escudo do São Paulo FC representa o estado de São Paulo, com o Triângulo e o Monumento às Bandeiras</button>
+							onclick="responder(this, 'O escudo do São Paulo FC representa o estado de São Paulo, com o Triângulo e o Monumento às Bandeiras')">O
+							escudo do São Paulo FC representa o estado de São Paulo, com o Triângulo e o Monumento às Bandeiras</button>
 						<button onclick="responder(this, false)">Um leão</button>
 						<button onclick="responder(this, false)">Um escudo com as cores do Brasil</button>
 					</div>
@@ -196,8 +197,20 @@
 			return sessionStorage.ID_USUARIO;
 		}
 
+		function formatarDataParaMySQL(data) {
+			const dataObj = new Date(data);
+			const ano = dataObj.getFullYear();
+			const mes = String(dataObj.getMonth() + 1).padStart(2, '0');
+			const dia = String(dataObj.getDate()).padStart(2, '0');
+			const horas = String(dataObj.getHours()).padStart(2, '0');
+			const minutos = String(dataObj.getMinutes()).padStart(2, '0');
+			const segundos = String(dataObj.getSeconds()).padStart(2, '0');
+			return `${ano}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
+		}
+
 		function exibirResultados() {
 			const fk_usuario = obterIdUsuario();
+			const dataQuiz = formatarDataParaMySQL(new Date().toISOString());
 
 			document.getElementById("quiz").style.display = "none";
 			document.getElementById("resultados").style.display = "block";
@@ -231,6 +244,7 @@
 				body: JSON.stringify({
 					acertos: respostasCorretas,
 					erros: respostasIncorretas,
+					dataQuiz: dataQuiz,
 					fk_usuario: fk_usuario
 				})
 			})
