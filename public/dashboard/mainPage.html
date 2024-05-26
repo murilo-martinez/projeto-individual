@@ -70,7 +70,7 @@
 			</div>
 			<div class="grafico-evolucao">
 				<h3>Seus últimos resultados</h3>
-				<canvas id="graficoEvolucaoAcertos" width="150px" height="70" style="padding: 3rem;"></canvas>
+				<canvas id="graficoEvolucaoAcertos" width="200px" height="70" style="padding: 3rem;"></canvas>
 			</div>
 		</div>
 	</div>
@@ -91,7 +91,7 @@
 			fetch('/medidas/media-acertos')
 				.then(response => response.json())
 				.then(data => {
-					const mediaValor = document.getElementById("mediaValor");
+					var mediaValor = document.getElementById("mediaValor");
 					mediaValor.innerText = `${Number(data[0].media_acertos).toFixed(0)}`;
 				})
 				.catch(error => console.error('Erro ao buscar média de acertos:', error));
@@ -102,20 +102,20 @@
 			fetch('/medidas/classificacao')
 				.then(response => response.json())
 				.then(data => {
-					const corpoTabela = document.getElementById("corpoTabela");
+					var corpoTabela = document.getElementById("corpoTabela");
 
-					const linhas = corpoTabela.querySelectorAll("tr");
-					for (let i = 0; i < linhas.length; i++) {
-						const linha = linhas[i];
-						const jogador = linha.querySelector("td:nth-child(2)").textContent.trim();
-						const pontuacao = parseInt(linha.querySelector("td:nth-child(3)").textContent.trim());
+					var linhas = corpoTabela.querySelectorAll("tr");
+					for (var i = 0; i < linhas.length; i++) {
+						var linha = linhas[i];
+						var jogador = linha.querySelector("td:nth-child(2)").textContent.trim();
+						var pontuacao = parseInt(linha.querySelector("td:nth-child(3)").textContent.trim());
 						console.log(jogador, pontuacao);
 					}
 
-					for (let i = 0; i < data.length; i++) {
-						const item = data[i];
-						const nomeJogador = item.nome;
-						const pontuacaoJogador = item.acertos;
+					for (var i = 0; i < data.length; i++) {
+						var item = data[i];
+						var nomeJogador = item.nome;
+						var pontuacaoJogador = item.acertos;
 
 						adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, i + 1);
 					}
@@ -124,30 +124,34 @@
 		}
 
 		function adicionarJogadorTabela(corpoTabela, nomeJogador, pontuacaoJogador, posicao) {
-			const linha = document.createElement("tr");
-			const colunaPosicao = document.createElement("td");
+			var linha = document.createElement("tr");
+			var colunaPosicao = document.createElement("td");
 
-			// Adicionar coroa baseada na posição
-			let coroa = '';
+			var coroa = '';
 			if (posicao === 1) {
-				coroa = ' 👑'; // Coroa de ouro
-				linha.style.backgroundColor = "#FFD700"; // Fundo dourado
+				coroa = ' 👑';
+				linha.style.backgroundColor = "#FFD700";
 			} else if (posicao === 2) {
-				coroa = ' 👑'; // Coroa de prata
-				linha.style.backgroundColor = "#C0C0C0"; // Fundo prateado
+				coroa = ' 👑';
+				linha.style.backgroundColor = "#C0C0C0";
 			} else if (posicao === 3) {
-				coroa = ' 👑'; // Coroa de bronze
-				linha.style.backgroundColor = "#CD7F32"; // Fundo bronzeado
+				coroa = ' 👑';
+				linha.style.backgroundColor = "#CD7F32";
 			}
+
+			var emojiJogador = ' ➥'
 
 			colunaPosicao.innerHTML = `${posicao}º${coroa}`;
-			const colunaJogador = document.createElement("td");
+			var colunaJogador = document.createElement("td");
 			colunaJogador.textContent = nomeJogador;
+
 			if (nomeJogador === sessionStorage.NOME_USUARIO) {
 				colunaJogador.classList.add("player-highlighted");
+
+				colunaJogador.innerHTML = `${emojiJogador} ${nomeJogador}`
 			}
 
-			const colunaPontuacao = document.createElement("td");
+			var colunaPontuacao = document.createElement("td");
 			colunaPontuacao.textContent = pontuacaoJogador;
 			linha.appendChild(colunaPosicao);
 			linha.appendChild(colunaJogador);
@@ -156,21 +160,16 @@
 		}
 
 		function exibirGraficoEvolucaoAcertos() {
-			const fk_usuario = sessionStorage.ID_USUARIO;
-
-			if (!fk_usuario) {
-				console.error("ID do usuário não encontrado na sessionStorage.");
-				return;
-			}
+			var fk_usuario = sessionStorage.ID_USUARIO;
 
 			fetch(`/medidas/ultimos-acertos/${fk_usuario}`)
 				.then(response => response.json())
 				.then(data => {
-					const labels = data.map(item => item.data);
-					const acertos = data.map(item => item.acertos);
+					var labels = data.map(item => item.data);
+					var acertos = data.map(item => item.acertos);
 
-					const ctx = document.getElementById('graficoEvolucaoAcertos').getContext('2d');
-					const graficoEvolucaoAcertos = new Chart(ctx, {
+					var ctx = document.getElementById('graficoEvolucaoAcertos').getContext('2d');
+					var graficoEvolucaoAcertos = new Chart(ctx, {
 						type: 'bar',
 						data: {
 							labels: labels,

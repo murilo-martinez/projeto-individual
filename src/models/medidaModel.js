@@ -33,7 +33,7 @@ function obterUltimosAcertos(fk_usuario) {
         SELECT acertos, DATE_FORMAT(dataQuiz, '%d/%m/%Y') AS data
         FROM quiz_resultados
         WHERE fk_usuario = '${fk_usuario}'
-        ORDER BY dataQuiz DESC
+        ORDER BY dataQuiz
     `;
     return database.executar(instrucaoSql);
 }
