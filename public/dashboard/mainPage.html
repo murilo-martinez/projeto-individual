@@ -8,10 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>MZFC | Geral</title>
 	<link rel="stylesheet" href="./../css/dashboards.css">
-	<link rel="stylesheet" href="./../css/estilo.css" />
+	<!-- <link rel="stylesheet" href="./../css/estilo.css" /> -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="../js/sessao.js"></script>
-	<script src="../js/alerta.js"></script>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap"
 		rel="stylesheet">
@@ -44,13 +43,16 @@
 		</div>
 		<div class="dash">
 			<div class="jogadores-media">
-				<div id="jogadores" class="info-box box">
-					<h3>Usuários Ativos:</h3>
-					<div id="listaJogadores"></div>
-				</div>
-				<div id="mediaAcertos" class="info-box box">
-					<h3>Média de Acertos:</h3>
-					<p id="mediaValor"></p>
+				<h2>Médias Globais</h2>
+				<div class="box">
+					<div id="jogadores" class="info-box">
+						<h3>Usuários Ativos:</h3>
+						<div id="listaJogadores"></div>
+					</div>
+					<div id="mediaAcertos" class="info-box">
+						<h3>Média de Acertos:</h3>
+						<p id="mediaValor"></p>
+					</div>
 				</div>
 			</div>
 			<div id="classificacao" class="info-box">
@@ -67,7 +69,8 @@
 				</table>
 			</div>
 			<div class="grafico-evolucao">
-				<canvas id="graficoEvolucaoAcertos"></canvas>
+				<h3>Seus últimos resultados</h3>
+				<canvas id="graficoEvolucaoAcertos" width="150px" height="70" style="padding: 3rem;"></canvas>
 			</div>
 		</div>
 	</div>
@@ -153,43 +156,43 @@
 		}
 
 		function exibirGraficoEvolucaoAcertos() {
-            const fk_usuario = sessionStorage.ID_USUARIO;
+			const fk_usuario = sessionStorage.ID_USUARIO;
 
-            if (!fk_usuario) {
-                console.error("ID do usuário não encontrado na sessionStorage.");
-                return;
-            }
+			if (!fk_usuario) {
+				console.error("ID do usuário não encontrado na sessionStorage.");
+				return;
+			}
 
-            fetch(`/medidas/ultimos-acertos/${fk_usuario}`)
-                .then(response => response.json())
-                .then(data => {
-                    const labels = data.map(item => item.data);
-                    const acertos = data.map(item => item.acertos);
+			fetch(`/medidas/ultimos-acertos/${fk_usuario}`)
+				.then(response => response.json())
+				.then(data => {
+					const labels = data.map(item => item.data);
+					const acertos = data.map(item => item.acertos);
 
-                    const ctx = document.getElementById('graficoEvolucaoAcertos').getContext('2d');
-                    const graficoEvolucaoAcertos = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Últimos Acertos',
-                                data: acertos,
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                })
-                .catch(error => console.error('Erro ao buscar últimos acertos:', error));
-        }
+					const ctx = document.getElementById('graficoEvolucaoAcertos').getContext('2d');
+					const graficoEvolucaoAcertos = new Chart(ctx, {
+						type: 'bar',
+						data: {
+							labels: labels,
+							datasets: [{
+								label: 'Últimos Acertos',
+								data: acertos,
+								borderColor: '#FFD700',
+								backgroundColor: '#ffd90080',
+								borderWidth: 1
+							}]
+						},
+						options: {
+							scales: {
+								y: {
+									beginAtZero: true
+								}
+							}
+						}
+					});
+				})
+				.catch(error => console.error('Erro ao buscar últimos acertos:', error));
+		}
 	</script>
 </body>
 

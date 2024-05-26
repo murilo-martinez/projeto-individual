@@ -456,10 +456,25 @@ canvas {
 
 .jogadores-media {
 	background-color: #212124;
-	display: flex;
-	justify-content: space-around;
+	/* display: flex;
+	justify-content: space-around; */
+	text-align: center;
 	gap: 2rem;
 	color: #fff;
+}
+
+.box{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	background-color: var(--cor-vermelha);
+	border-radius: 70px;
+}
+
+.jogadores-media h2{
+	text-decoration: underline var(--cor-branca);
+	font-size: 40px;
 }
 
 #jogadores {
@@ -474,7 +489,7 @@ canvas {
 	font-size: 35px;
 	font-weight: bold;
 	margin-left: 1rem;
-	color: var(--cor-vermelha);
+	color: var(--cor-branca);
 	text-decoration: underline var(--cor-branca);
 }
 
@@ -490,7 +505,7 @@ canvas {
 	font-size: 34px;
 	font-weight: bold;
 	margin-left: 1rem;
-	color: var(--cor-vermelha);
+	color: var(--cor-branca);
 	text-decoration: underline var(--cor-branca);
 }
 
@@ -588,7 +603,7 @@ canvas {
 
 .player-highlighted {
     font-weight: bold;
-    color: #FF4500; /* Destaque para o jogador atual */
+    color: #FF4500;
 }
 
 #tabelaClassificacao td {
@@ -596,17 +611,22 @@ canvas {
 }
 
 #tabelaClassificacao .gold {
-    background-color: #FFD700; /* Fundo dourado */
+    background-color: #FFD700;
+	color: #ffd90080;
 }
 
 #tabelaClassificacao .silver {
-    background-color: #C0C0C0; /* Fundo prateado */
+    background-color: #C0C0C0;
 }
 
 #tabelaClassificacao .bronze {
-    background-color: #CD7F32; /* Fundo bronzeado */
+    background-color: #CD7F32;
 }
 
 .grafico-evolucao {
     margin-top: 20px;
+	text-align: center;
+	color: #fff;
+	text-decoration: underline var(--cor-branca);
+	font-size: 30px;
 }
