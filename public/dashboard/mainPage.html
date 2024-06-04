@@ -129,19 +129,19 @@
 
 			var coroa = '';
 			if (posicao === 1) {
-				coroa = ' 👑';
+				coroa = ' ../assets/imgs/tacaLibertadores-removebg-preview.png';
 				linha.style.backgroundColor = "#FFD700";
 			} else if (posicao === 2) {
-				coroa = ' 👑';
+				coroa = ' ../assets/imgs/tacaCopaBrasil-removebg-preview.png';
 				linha.style.backgroundColor = "#C0C0C0";
 			} else if (posicao === 3) {
-				coroa = ' 👑';
+				coroa = ' ../assets/imgs/tacaBrasileirao-removebg-preview.png';
 				linha.style.backgroundColor = "#CD7F32";
 			}
 
 			var emojiJogador = ' ➥'
 
-			colunaPosicao.innerHTML = `${posicao}º${coroa}`;
+			colunaPosicao.innerHTML = `<div style="text-align: center;">${posicao}º<img src='${coroa}' alt='img' style="width: 50px; height: 50px"></div>`;
 			var colunaJogador = document.createElement("td");
 			colunaJogador.textContent = nomeJogador;
 
