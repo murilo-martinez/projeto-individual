@@ -62,50 +62,84 @@ body{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	gap: 4rem;
+	flex-direction: column;
 
-    margin: 50px 50px;
-	margin-top: 10rem;
+	gap: 4rem;
+	margin-top: 5rem;
 
 	padding: 1rem;
 
-	border: 2px solid #000;
-}
-
-.sobre-mim img{
-	width: 50%;
-	height: 500px;
-	padding: 0;
+	background-image: url('../assets/imgs/torcidade2.webp');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .sobre-mim h1 {
-    font-size: 36px;
-    margin-bottom: 20px
+    font-size: 60px;
+    margin-bottom: 20px;
+	margin-top: 55px;
+	color: #fff;
 }
 
 .sobre-mim p {
-    font-size: 18px;
+    font-size: 22px;
+	font-weight: bold;
     line-height: 1.6;
     margin-bottom: 20px;
+	color: #fff;
 }
 
 .historia {
-    margin-bottom: 40px;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	gap: 4rem;
 }
 
-.historia h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+.container-historia{
+	display: flex;
+	justify-content: space-around;
+	gap: 4rem;
 }
 
-.historia p {
-    font-size: 16px;
-    line-height: 1.6;
+.container-historia img{
+	width: 30%;
+	height: 100%;
+	border-radius: 20px;
 }
 
-.sobre-mim span{
-	color: var(--cor-vermelha-sec);
+.container-historia div{
+	background-color: #fff;
+	text-align: center;
+
+	padding: 3rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
+
+.container-historia div h2{
+	color: #780000;
+	font-size: 45px;
+	text-decoration: underline #780000;
+	margin-bottom: 3rem;
+}
+
+.container-historia div p {
+	color: #000;
+	font-size: 16px;
+	line-height: 40px;
+}
+
+.reverso{
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+
+
 
 /* FOOTER */
 
@@ -150,4 +184,14 @@ body{
 .item-link:hover{
 	text-decoration: underline;
 	font-weight: bold;
+}
+
+.background{
+
+
+	height: 20rem;
+}
+
+.titulo-background{
+	text-align: center;
 }
