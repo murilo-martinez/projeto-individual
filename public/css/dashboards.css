@@ -544,11 +544,15 @@ canvas {
 }
 
 #quizContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	margin-top: 8rem;
+	max-width: 600px;
+	border: 2px solid #ccc;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #f9f9f9;
+
+	position: relative;
+	top: 30%;
+	left: 20%
 }
 
 #inicarQuiz h1 {
@@ -667,7 +671,6 @@ canvas {
 }
 
 .pergunta h2 {
-	color: #fff; /* Garante que o texto da pergunta seja sempre branco */
 	font-size: 24px;
 	margin-bottom: 20px;
 }
