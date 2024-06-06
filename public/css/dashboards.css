@@ -707,34 +707,44 @@ canvas {
 	width: 80%;
 	height: auto;
 	text-align: center;
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding: 20px; /* Espaçamento interno */
+	border-radius: 10px;
 }
 
 #resultados h2 {
+	font-size: 24px;
 	margin-bottom: 20px;
-	font-size: 36px;
+	color: #e6005a; /* Cor do título */
 }
 
 #resultados p {
 	font-size: 18px;
 	margin-bottom: 10px;
+	color: #333; /* Cor do texto */
+}
+
+#graficoResultados {
+	width: 100%;
+	max-width: 400px; /* Ajuste conforme necessário */
+	margin: 20px auto;
+	border-radius: 10px;
+}
+
+#graficoResultados canvas {
+	border-radius: 10px;
 }
 
 #indicadores {
 	margin-top: 20px;
+	display: flex;
+	justify-content: center;
 }
 
 #indicadores p {
 	font-size: 18px;
 	margin-bottom: 10px;
-}
-
-#graficoResultados {
-	width: 100%;
-	max-width: 600px;
-	margin: 20px auto;
-}
-
-#graficoResultados canvas {
-	border-radius: 10px;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	color: #666; /* Cor do texto dos indicadores */
 }
