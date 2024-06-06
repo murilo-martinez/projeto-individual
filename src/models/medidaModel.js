@@ -28,9 +28,9 @@ function salvarResultados(acertos, erros, dataQuiz, fk_usuario) {
     return database.executar(instrucaoSql, [acertos, erros, dataQuiz, fk_usuario]);
 }
 
-function obterUltimosAcertos(fk_usuario) {
+function obterUltimosAcertosErros(fk_usuario) {
     const instrucaoSql = `
-        SELECT acertos, DATE_FORMAT(dataQuiz, '%d/%m/%Y') AS data
+        SELECT acertos, erros ,DATE_FORMAT(dataQuiz, '%d/%m/%Y') AS data
         FROM quiz_resultados
         WHERE fk_usuario = '${fk_usuario}'
         ORDER BY dataQuiz
@@ -43,5 +43,5 @@ module.exports = {
     calcularMediaAcertos,
     obterClassificacao,
     salvarResultados,
-    obterUltimosAcertos
+    obterUltimosAcertosErros
 };

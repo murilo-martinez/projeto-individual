@@ -30,8 +30,8 @@ router.get("/classificacao", function (req, res) {
     medidaController.classificacao(req, res);
 });
 
-router.get("/ultimos-acertos/:fk_usuario", function (req, res) {
-    medidaController.ultimosAcertos(req, res);
+router.get("/ultimos-acertos-erros/:fk_usuario", function (req, res) {
+    medidaController.ultimosAcertosErros(req, res);
 });
 
 router.post('/salvar-resultados', medidaController.salvarResultados);

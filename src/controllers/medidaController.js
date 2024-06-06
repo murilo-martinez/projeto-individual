@@ -47,10 +47,10 @@ function salvarResultados(req, res) {
         });
 }
 
-function ultimosAcertos(req, res) {
+function ultimosAcertosErros(req, res) {
     const { fk_usuario } = req.params;
 
-    medidaModel.obterUltimosAcertos(fk_usuario)
+    medidaModel.obterUltimosAcertosErros(fk_usuario)
         .then(result => res.status(200).json(result))
         .catch(erro => {
             console.error('Erro ao obter evolução do usuário:', erro.sqlMessage);
@@ -64,6 +64,6 @@ module.exports = {
     classificacao,
     mediaAcertosErros,
     salvarResultados,
-    ultimosAcertos
+    ultimosAcertosErros
 };
 

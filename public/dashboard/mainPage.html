@@ -141,8 +141,13 @@
 
 			var emojiJogador = ' ➥'
 
-			colunaPosicao.innerHTML = `<div style="text-align: center;">${posicao}º<img src='${coroa}' alt='img' style="width: 50px; height: 50px"></div>`;
-			var colunaJogador = document.createElement("td");
+			if(posicao >= 4){
+				colunaPosicao.textContent = `${posicao}º`;
+			} else {
+				colunaPosicao.innerHTML = `<div style="text-align: center;">${posicao}º<img src='${coroa}' alt='img' style="width: 50px; height: 50px"></div>`;
+			}
+
+			var colunaJogador = document.createElement("td");	
 			colunaJogador.textContent = nomeJogador;
 
 			if (nomeJogador === sessionStorage.NOME_USUARIO) {
@@ -162,11 +167,12 @@
 		function exibirGraficoEvolucaoAcertos() {
 			var fk_usuario = sessionStorage.ID_USUARIO;
 
-			fetch(`/medidas/ultimos-acertos/${fk_usuario}`)
+			fetch(`/medidas/ultimos-acertos-erros/${fk_usuario}`)
 				.then(response => response.json())
 				.then(data => {
 					var labels = data.map(item => item.data);
 					var acertos = data.map(item => item.acertos);
+					var erros = data.map(item => item.erros);
 
 					var ctx = document.getElementById('graficoEvolucaoAcertos').getContext('2d');
 					var graficoEvolucaoAcertos = new Chart(ctx, {
@@ -178,6 +184,12 @@
 								data: acertos,
 								borderColor: '#fdf0d5',
 								backgroundColor: '#780000',
+								borderWidth: 3
+							},{
+								label: 'Últimos Erros',
+								data: erros,
+								borderColor: '#780000',
+								backgroundColor: '#fdf0d5',
 								borderWidth: 3
 							}]
 						},
