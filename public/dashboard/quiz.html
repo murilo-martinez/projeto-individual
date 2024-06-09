@@ -115,8 +115,7 @@
 
 					<div id="pergunta8" class="pergunta" style="display: none;">
 						<h2>Quais são os maiores ídolos?</h2>
-						<button onclick="responder(this, 'Rogério Ceni, Telê Santana, Raí')">Rogério Ceni, Telê Santana,
-							Raí</button>
+						<button onclick="responder(this, 'Rogério Ceni, Telê Santana, Raí')">Rogério Ceni, Telê Santana, Raí</button>
 						<button onclick="responder(this, false)">Morumbi, Pacaembu, Vila Belmiro</button>
 						<button onclick="responder(this, false)">São Paulo, Corinthians, Palmeiras</button>
 						<button onclick="responder(this, false)">Telê Santana, Muricy Ramalho, Paulo
@@ -141,14 +140,13 @@
 
 				</div>
 				<div id="resultados" style="display: none;">
-					<h2>Resultados do Quiz</h2>
-					<canvas id="graficoResultados"></canvas>
+					<h2 style="color: #780000;">Resultados do Quiz</h2>
 					<div id="indicadores">
-						<p>Média de acertos: <span id="media"></span></p>
-						<p>Você está <span id="acimaOuAbaixo"></span> da média.</p>
+						<p>Média de acertos: <span id="media"></span></p> <br>
 						<p>Desempenho: <span id="desempenho"></span></p>
 					</div>
-					<button onclick="voltar()">Voltar</button>
+					<canvas id="graficoResultados"></canvas>
+					<button onclick="voltar()" class="btn-voltar">Ver tabela</button>
 				</div>
 
 
@@ -214,14 +212,7 @@
 
 			var totalRespostas = respostasCorretas + respostasIncorretas;
 			var media = (respostasCorretas / totalRespostas) * 100;
-			document.getElementById("media").textContent = media.toFixed(2) + "%";
-
-			var mediaGeral = 70;
-			if (media >= mediaGeral) {
-				document.getElementById("acimaOuAbaixo").textContent = "acima";
-			} else {
-				document.getElementById("acimaOuAbaixo").textContent = "abaixo";
-			}
+			document.getElementById("media").innerHTML = `<b style="color: #780000">${media.toFixed(2)}</b>%`;
 
 			var desempenho = '';
 			if (media >= 80) {
@@ -231,7 +222,7 @@
 			} else {
 				desempenho = 'Ruim';
 			}
-			document.getElementById("desempenho").textContent = desempenho;
+			document.getElementById("desempenho").innerHTML = `<b style="color: #780000">${desempenho}</b>`;
 
 			fetch('/medidas/salvar-resultados', {
 				method: 'POST',
@@ -267,12 +258,12 @@
 						label: 'Quantidade',
 						data: [respostasCorretas, respostasIncorretas],
 						backgroundColor: [
-							'rgba(75, 192, 192)',
-							'rgba(255, 99, 132)',
+							'#fdf0d5',
+							'#780000',
 						],
 						borderColor: [
-							'rgba(75, 192, 192, 1)',
-							'rgba(255, 99, 132, 1)',
+							'#fdf0d5',
+							'#780000',
 						],
 						borderWidth: 1
 					}]

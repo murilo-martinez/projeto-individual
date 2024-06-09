@@ -741,10 +741,29 @@ canvas {
 	margin-top: 20px;
 	display: flex;
 	justify-content: center;
+	gap: 1rem;
+}
+
+#indicadores h2{
+	color:  var(--cor-vermelha);
 }
 
 #indicadores p {
 	font-size: 18px;
 	margin-bottom: 10px;
 	color: #666; /* Cor do texto dos indicadores */
+}
+
+.btn-voltar{
+	padding: .6rem;
+	border: 3px solid var(--cor-vermelha);
+	background-color: transparent;
+	color: var(--cor-vermelha);
+	transition: .3s ease-in-out;
+	margin-left: 3rem;
+}
+
+.btn-voltar:hover{
+	background-color: var(--cor-vermelha);
+	color: var(--cor-branca);
 }
