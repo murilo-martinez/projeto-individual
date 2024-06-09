@@ -146,6 +146,11 @@
 						<p>Desempenho: <span id="desempenho"></span></p>
 					</div>
 					<canvas id="graficoResultados"></canvas>
+					<!-- <div id="imagemResultado" style="width: 100px; height: 100px;">
+                        <img id="imagemBom"style="display: none;">
+                        <img id="imagemMedio" style="display: none;">
+                        <img id="imagemRuim" style="display: none;">
+                    </div> -->
 					<button onclick="voltar()" class="btn-voltar">Ver tabela</button>
 				</div>
 
@@ -214,14 +219,18 @@
 			var media = (respostasCorretas / totalRespostas) * 100;
 			document.getElementById("media").innerHTML = `<b style="color: #780000">${media.toFixed(2)}</b>%`;
 
-			var desempenho = '';
-			if (media >= 80) {
-				desempenho = 'Bom';
-			} else if (media >= 50) {
-				desempenho = 'Médio';
-			} else {
-				desempenho = 'Ruim';
-			}
+            var desempenho = '';
+            if (media >= 80) {
+                desempenho = 'Bom';
+                // document.getElementById("imagemBom").style.display = "block";
+            } else if (media >= 50) {
+                desempenho = 'Médio';
+                // document.getElementById("imagemMedio").style.display = "block";
+            } else {
+                desempenho = 'Ruim';
+                // document.getElementById("imagemRuim").style.display = "block";
+            }
+
 			document.getElementById("desempenho").innerHTML = `<b style="color: #780000">${desempenho}</b>`;
 
 			fetch('/medidas/salvar-resultados', {
