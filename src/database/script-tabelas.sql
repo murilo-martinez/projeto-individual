@@ -19,6 +19,12 @@ CREATE TABLE usuario (
 
 select * from usuario;
 
+insert into usuario values
+(default, 'Thiago Bonacelli', 'thiago@gmail.com', '1234'),
+(default, 'Patrícia', 'patricia@gmail.com', '1234'),
+(default, 'Ana', 'ana@gmail.com', '1234'),
+(default, 'Gisele', 'gisele@gmail.com', '1234');
+
 CREATE TABLE quiz_resultados (
     id INT PRIMARY KEY AUTO_INCREMENT,
     acertos INT,
@@ -30,6 +36,12 @@ CREATE TABLE quiz_resultados (
 
 select * from quiz_resultados;
 
+insert into quiz_resultados values
+(default, 9, 1, default, 1),
+(default, 8, 1, default, 2),
+(default, 7, 3, default, 3),
+(default, 6, 4, default, 4);
+
 create table post(
 	id int auto_increment,
     fkUsuario int,
@@ -37,14 +49,4 @@ create table post(
     titulo varchar(65),
     descricao varchar(255),
     foreign key(fkUsuario) references usuario(id)
-);
-
-create table comentario(
-	id int auto_increment,
-    fkPost int,
-    primary key(id, fkPost),
-	fkUsuarioComentario int,
-    descricao varchar(255),
-    foreign key(fkPost) references post(id),
-    foreign key(fkUsuarioComentario) references usuario(id)
 );
