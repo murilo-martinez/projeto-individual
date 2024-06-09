@@ -197,20 +197,13 @@
 			return sessionStorage.ID_USUARIO;
 		}
 
-		function formatarDataParaMySQL(data) {
-			var dataObj = new Date(data);
-			var ano = dataObj.getFullYear();
-			var mes = String(dataObj.getMonth() + 1).padStart(2, '0');
-			var dia = String(dataObj.getDate()).padStart(2, '0');
-			var horas = String(dataObj.getHours()).padStart(2, '0');
-			var minutos = String(dataObj.getMinutes()).padStart(2, '0');
-			var segundos = String(dataObj.getSeconds()).padStart(2, '0');
-			return `${ano}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
-		}
+        function formatarDataParaMySQL(data) {
+            return new Date(data).toISOString().replace('T', ' ').slice(0, 19);
+        }
 
 		function exibirResultados() {
 			var fk_usuario = obterIdUsuario();
-			var dataQuiz = formatarDataParaMySQL(new Date().toISOString());
+			var dataQuiz = formatarDataParaMySQL(new Date());
 
 			document.getElementById("quiz").style.display = "none";
 			document.getElementById("resultados").style.display = "block";
