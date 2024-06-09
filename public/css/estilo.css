@@ -51,7 +51,7 @@ body {
 }
 
 .titulo {
-  color: #32b9cd;
+  color: #780000;
   width: fit-content;
   font-weight: 500;
 }
@@ -271,7 +271,7 @@ body {
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
+  border: 2px solid #780000;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
